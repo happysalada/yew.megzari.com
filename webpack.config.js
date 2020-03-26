@@ -73,9 +73,7 @@ module.exports = (env, argv) => {
               options: {
                 config: {
                   // Path to postcss.config.js.
-                  path: __dirname,
-                  // Pass mode into `postcss.config.js` (see more info in that file).
-                  ctx: { mode: argv.mode }
+                  path: __dirname
                 }
               }
             }

@@ -10,12 +10,10 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
 });
 
-module.exports = ({ options }) => {
-  return {
-    plugins: [
-      require("tailwindcss")("./tailwind.config.js"),
-      require("autoprefixer"),
-      ...(options.mode === "production" ? [purgecss] : [])
-    ]
-  };
-};
+module.exports = ({ webpack: { mode } }) => ({
+  plugins: [
+    require("tailwindcss")("./tailwind.config.js"),
+    require("autoprefixer"),
+    ...(mode === "production" ? [purgecss] : [])
+  ]
+});
