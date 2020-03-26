@@ -1,12 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Yew • TodoMVC</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-common@1.0.5/base.css"/ >
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/todomvc-app-css@2.1.2/index.css" />
-    </head>
-    <body>
-        <script src="/todomvc.js"></script>
-    </body>
+  <head>
+    <base href="/" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- https://megatags.co/ ; meta "name" changed to "property" -->
+    <!-- COMMON TAGS -->
+    <meta charset="utf-8" />
+    <title>Megzari.com</title>
+    <!-- Search Engine -->
+    <meta name="description" content="Raphael Megzari - developer" />
+    <meta name="image" content="https://kavik.cz/static/images/og_image.jpg" />
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="Megzari.com" />
+    <meta
+      itemprop="description"
+      content="Raphael Megzari - freelance developer"
+    />
+    <meta
+      itemprop="image"
+      content="https://kavik.cz/static/images/og_image.jpg"
+    />
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta property="og:title" content="Megzari.com" />
+    <meta property="og:description" content="Raphael Megzari - developer" />
+    <meta
+      property="og:image"
+      content="https://kavik.cz/static/images/og_image.jpg"
+    />
+    <meta property="og:url" content="https://megzari.com" />
+    <meta property="og:site_name" content="Raphael Megzari" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <!-- https://realfavicongenerator.net -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2b5797" />
+    <meta name="msapplication-TileColor" content="#2b5797" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Because of Edge, see https://github.com/samthor/fast-text-encoding  -->
+    <script type="text/javascript" src="/static/text-polyfill.min.js"></script>
+  </head>
+
+  <body
+    class="fade-in font-body text-18 bg-gray-1 overflow-x-hidden w-screen relative sm:text-26 lg:text-45"
+  >
+    <section id="app" class="overflow-x-hidden w-screen relative">
+      <div
+        id="loading-page"
+        class="fade-in h-screen flex flex-col items-center justify-center"
+      >
+        <h1
+          class="-mt-10vh font-sans font-light text-29 text-gray-10 sm:text-45 lg:text-80"
+        >
+          YOU ARE AWESOME!
+        </h1>
+        <!-- spinner from https://loading.io -->
+        <svg
+          class="mt-4 h-12 rotate sm:mt-5 sm:h-16 lg:mt-8 lg:h-24"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="xMidYMid"
+          style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;"
+        >
+          <path
+            stroke="none"
+            d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50"
+          ></path>
+        </svg>
+      </div>
+    </section>
+  </body>
 </html>
