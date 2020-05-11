@@ -4131,7 +4131,7 @@ postcss-nested@^4.1.1:
     postcss "^7.0.21"
     postcss-selector-parser "^6.0.2"
 
-postcss-selector-parser@^6.0.0, postcss-selector-parser@^6.0.2:
+postcss-selector-parser@6.0.2, postcss-selector-parser@^6.0.0, postcss-selector-parser@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.2.tgz#934cf799d016c83411859e09dcecade01286ec5c"
   integrity sha512-36P2QR59jDTOAiIkqEprfJDsoNrvwFei3eCqKd1Y0tUsBimsq39BLp7RD+JWny3WgB1zGhJX8XVePwm9k4wdBg==
@@ -4140,13 +4140,13 @@ postcss-selector-parser@^6.0.0, postcss-selector-parser@^6.0.2:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss-typed-css-classes@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/postcss-typed-css-classes/-/postcss-typed-css-classes-0.1.5.tgz#6b8c979e09f2969fce46103a7644c6728bf9e682"
-  integrity sha512-bQP/FH+DulIGUF9wy+KEEcRZEYxuj2mmCm9PL3lZYyzkQmnz7yvgPHoqhmpBUvdNiQpowscYUJtuxNRGYWpBTg==
+postcss-typed-css-classes@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/postcss-typed-css-classes/-/postcss-typed-css-classes-0.1.6.tgz#1d6f40137af5526e0c0e4352d614a0239929f7e8"
+  integrity sha512-GZnpBopdMeRdAI/pVZrxAcunxrMVOjW4HrV76yAcgw3nH8koY8nCRbHnjgYg3xsigOiwSueth6jpbbBmdPMUvA==
   dependencies:
-    postcss "^7.0.26"
-    postcss-selector-parser "^6.0.2"
+    postcss "7.0.29"
+    postcss-selector-parser "6.0.2"
 
 postcss-value-parser@^3.2.3, postcss-value-parser@^3.3.0:
   version "3.3.1"
@@ -4158,10 +4158,19 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.0.3:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.0.3.tgz#651ff4593aa9eda8d5d0d66593a2417aeaeb325d"
   integrity sha512-N7h4pG+Nnu5BEIzyeaaIYWs0LI5XC40OrRh5L60z0QjFsqGWcHcbkBvpe1WYpcIS9yQ8sOi/vIPt1ejQCrMVrg==
 
-postcss@7.0.28, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.11, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.18, postcss@^7.0.21, postcss@^7.0.26, postcss@^7.0.27, postcss@^7.0.5, postcss@^7.0.6:
+postcss@7.0.28:
   version "7.0.28"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.28.tgz#d349ced7743475717ba91f6810efb58c51fb5dbb"
   integrity sha512-YU6nVhyWIsVtlNlnAj1fHTsUKW5qxm3KEgzq2Jj6KTEFOTK8QWR12eIDvrlWhiSTK8WIBFTBhOJV4DY6dUuEbw==
+  dependencies:
+    chalk "^2.4.2"
+    source-map "^0.6.1"
+    supports-color "^6.1.0"
+
+postcss@7.0.29, postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.11, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.18, postcss@^7.0.21, postcss@^7.0.27, postcss@^7.0.5, postcss@^7.0.6:
+  version "7.0.29"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.29.tgz#d3a903872bd52280b83bce38cdc83ce55c06129e"
+  integrity sha512-ba0ApvR3LxGvRMMiUa9n0WR4HjzcYm7tS+ht4/2Nd0NLtHpPIH77fuB9Xh1/yJVz9O/E/95Y/dn8ygWsyffXtw==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
