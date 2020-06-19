@@ -1,7 +1,7 @@
 [package]
-name = "yew-wasm-pack-template"
+name = "megzari"
 version = "0.1.0"
-authors = ["Justin Starry <justin.starry@icloud.com"]
+authors = ["Raphael megzari raphael@megzari.com"]
 edition = "2018"
 
 [lib]
@@ -9,8 +9,6 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 log = "0.4"
-strum = "0.18"
-strum_macros = "0.18"
 serde = "1"
 serde_derive = "1"
 wasm-bindgen = "0.2.60"
