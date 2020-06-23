@@ -4293,10 +4293,10 @@ postcss-selector-parser@6.0.2, postcss-selector-parser@^6.0.0, postcss-selector-
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss-typed-css-classes@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/postcss-typed-css-classes/-/postcss-typed-css-classes-0.1.7.tgz#57b72014128f0519454827b0ca251ba8ef8e3801"
-  integrity sha512-a0yIdVqAP2bWIYK8az8hnDo0x6OoY9TAejKPetTQh7974Cx4j8lfshwrsd1NO1fwEZ7n3pCA0uH8FNeP1v5Evg==
+postcss-typed-css-classes@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/postcss-typed-css-classes/-/postcss-typed-css-classes-0.1.8.tgz#90cc94e687b078748a325455b64fa9b2b57b6686"
+  integrity sha512-NjHtkHa7MIBSWBg0CJlGG9ONbVjPmEJG6tRzmCKl9lPbjEiCWYKZuODwByNvoycXcKDutYdNB1OMgt4oDeaN0g==
   dependencies:
     postcss "7.0.29"
     postcss-selector-parser "6.0.2"
