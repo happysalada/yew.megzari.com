@@ -52,20 +52,26 @@ impl Component for Nav {
             "nav-active"
         } else {
             "nav-inactive"
-        };
+        }
+        .to_owned()
+            + " nav-default";
         let about_class = if let AppRoute::About = self.props.route {
             "nav-active"
         } else {
             "nav-inactive"
-        };
+        }
+        .to_owned()
+            + " nav-default";
         let blog_class = if let AppRoute::Blog = self.props.route {
             "nav-active"
         } else {
             "nav-inactive"
-        };
+        }
+        .to_owned()
+            + " nav-default";
 
         html! {
-        <>
+        <nav class="nav">
         <div class="mx-auto px-2 sm:px-4 lg:px-8">
           <div class="relative flex items-center justify-between h-16">
             <div class="flex items-center px-2 lg:px-0">
@@ -166,7 +172,7 @@ impl Component for Nav {
             </RouterAnchor<AppRoute>>
           </div>
         </div>
-        </>
+        </nav>
                 }
     }
 }

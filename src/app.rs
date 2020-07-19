@@ -2,6 +2,7 @@ use yew::prelude::*;
 use yew_router::switch::Permissive;
 use yew_router::{prelude::*, route::Route};
 
+use crate::components::footer::Footer;
 use crate::components::nav::Nav;
 use crate::routes::{about::About, blog::Blog, home::Home, AppRoute};
 
@@ -29,8 +30,9 @@ impl Component for App {
           <Router<AppRoute, ()>
             render = Router::render(|switch: AppRoute | {
               html!{
-                <>
+                <div class="grid">
                   <Nav route=&switch/>
+                  <main class="main h-full">
                   { match switch {
                       AppRoute::Home => html!{ <Home /> },
                       AppRoute::About => html!{ <About /> },
@@ -39,7 +41,11 @@ impl Component for App {
                       AppRoute::PageNotFound(Permissive(Some(missed_route))) => html!{format!("Page '{}' not found", missed_route)}
                     }
                   }
-                </>
+                  </main>
+                  <footer class="footer">
+                    <Footer />
+                  </footer>
+                </div>
               }
             })
             redirect = Router::redirect(|route: Route<()>| {
