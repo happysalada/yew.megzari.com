@@ -7,32 +7,61 @@ use crate::routes::AppRoute;
 pub struct Nav {
     link: ComponentLink<Self>,
     menu_open: bool,
-    props: Props,
-    _route_service: RouteService,
+    route: Route,
+    _route_agent_bridge: RouteAgentBridge,
 }
 
-#[derive(Clone, Properties)]
-pub struct Props {
-    pub route: AppRoute,
-}
 pub enum Msg {
     ToggleMenu,
-    RouteChanged(Route<()>),
+    NewRoute(Route),
+}
+
+impl Nav {
+    pub fn home_classes(&self) -> String {
+        if let Some(AppRoute::Home) = AppRoute::switch(self.route.clone()) {
+            "nav-active"
+        } else {
+            "nav-inactive"
+        }
+        .to_owned()
+            + " nav-default"
+    }
+
+    pub fn about_classes(&self) -> String {
+        if let Some(AppRoute::About) = AppRoute::switch(self.route.clone()) {
+            "nav-active"
+        } else {
+            "nav-inactive"
+        }
+        .to_owned()
+            + " nav-default"
+    }
+
+    pub fn blog_classes(&self) -> String {
+        if let Some(AppRoute::Blog) = AppRoute::switch(self.route.clone()) {
+            "nav-active"
+        } else {
+            "nav-inactive"
+        }
+        .to_owned()
+            + " nav-default"
+    }
 }
 
 impl Component for Nav {
     type Message = Msg;
-    type Properties = Props;
+    type Properties = ();
 
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        let mut route_service: RouteService<()> = RouteService::new();
-        let callback = link.callback(Msg::RouteChanged);
-        route_service.register_callback(callback);
+    fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
+        let callback = link.callback(Msg::NewRoute);
+        let route_agent_bridge = RouteAgentBridge::new(callback);
+        let route_service: RouteService<()> = RouteService::new();
+        let route = route_service.get_route();
 
         Nav {
-            _route_service: route_service,
+            _route_agent_bridge: route_agent_bridge,
             link,
-            props,
+            route,
             menu_open: false,
         }
     }
@@ -42,7 +71,9 @@ impl Component for Nav {
             Msg::ToggleMenu => {
                 self.menu_open = !self.menu_open;
             }
-            Msg::RouteChanged(_) => log::info!("route changed"),
+            Msg::NewRoute(route) => {
+                self.route = route;
+            }
         }
         true
     }
@@ -53,28 +84,6 @@ impl Component for Nav {
 
     fn view(&self) -> Html {
         let toggle_menu_callback = self.link.callback(|_| Msg::ToggleMenu);
-        let home_classes = if let AppRoute::Home = self.props.route {
-            "nav-active"
-        } else {
-            "nav-inactive"
-        }
-        .to_owned()
-            + " nav-default";
-        let about_classes = if let AppRoute::About = self.props.route {
-            "nav-active"
-        } else {
-            "nav-inactive"
-        }
-        .to_owned()
-            + " nav-default";
-
-        let blog_classes = if let AppRoute::Blog = self.props.route {
-            "nav-active"
-        } else {
-            "nav-inactive"
-        }
-        .to_owned()
-            + " nav-default";
         html! {
         <nav class="nav">
         <div class="mx-auto px-2 sm:px-4 lg:px-8">
@@ -84,19 +93,19 @@ impl Component for Nav {
                 <div class="flex space-x-4">
                   <RouterAnchor<AppRoute>
                     route=AppRoute::Home
-                    classes=&home_classes
+                    classes=&self.home_classes()
                   >
                     { "Home"}
                   </RouterAnchor<AppRoute>>
                   <RouterAnchor<AppRoute>
                     route=AppRoute::About
-                    classes=&about_classes
+                    classes=&self.about_classes()
                   >
                     { "About" }
                   </RouterAnchor<AppRoute>>
                   <RouterAnchor<AppRoute>
                     route=AppRoute::Blog
-                    classes=&blog_classes
+                    classes=&self.blog_classes()
                   >
                     { "Blog" }
                   </RouterAnchor<AppRoute>>
@@ -159,19 +168,19 @@ impl Component for Nav {
           <div class="px-2 pt-2 pb-3 flex flex-col space-y-1">
             <RouterAnchor<AppRoute>
               route=AppRoute::Home
-              classes=home_classes
+              classes=&self.home_classes()
             >
               { "Home"}
             </RouterAnchor<AppRoute>>
             <RouterAnchor<AppRoute>
               route=AppRoute::About
-              classes=about_classes
+              classes=self.about_classes()
             >
               { "About" }
             </RouterAnchor<AppRoute>>
             <RouterAnchor<AppRoute>
               route=AppRoute::Blog
-              classes=blog_classes
+              classes=self.blog_classes()
             >
               { "Blog" }
             </RouterAnchor<AppRoute>>

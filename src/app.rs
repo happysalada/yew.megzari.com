@@ -31,7 +31,7 @@ impl Component for App {
             render = Router::render(|switch: AppRoute | {
               html!{
                 <div class="grid">
-                  <Nav route=&switch/>
+                  <Nav />
                   <main class="main h-full">
                   { match switch {
                       AppRoute::Home => html!{ <Home /> },
