@@ -59,3 +59,15 @@ body {
     font-size: 5rem;
   }
 }
+
+/* About  */
+.content-grid {
+  display: grid;
+  grid-template-columns: 15vw auto 15vw;
+  grid-template-rows: 10vh minmax(80vh, auto) 10vh;
+  grid-template-areas: '. . .' '. content .' '. . .';
+}
+
+.content {
+  grid-area: content;
+}

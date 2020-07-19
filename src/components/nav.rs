@@ -6,19 +6,18 @@ use crate::routes::AppRoute;
 /// Nav component
 pub struct Nav {
     link: ComponentLink<Self>,
-    state: State,
+    menu_open: bool,
     props: Props,
+    _route_service: RouteService,
 }
 
-pub struct State {
-    menu_open: bool,
-}
 #[derive(Clone, Properties)]
 pub struct Props {
     pub route: AppRoute,
 }
 pub enum Msg {
     ToggleMenu,
+    RouteChanged(Route<()>),
 }
 
 impl Component for Nav {
@@ -26,20 +25,26 @@ impl Component for Nav {
     type Properties = Props;
 
     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+        let mut route_service: RouteService<()> = RouteService::new();
+        let callback = link.callback(Msg::RouteChanged);
+        route_service.register_callback(callback);
+
         Nav {
+            _route_service: route_service,
             link,
             props,
-            state: State { menu_open: false },
+            menu_open: false,
         }
     }
 
     fn update(&mut self, message: Self::Message) -> ShouldRender {
         match message {
             Msg::ToggleMenu => {
-                self.state.menu_open = !self.state.menu_open;
-                true
+                self.menu_open = !self.menu_open;
             }
+            Msg::RouteChanged(_) => log::info!("route changed"),
         }
+        true
     }
 
     fn change(&mut self, _: <Self as yew::html::Component>::Properties) -> bool {
@@ -48,21 +53,14 @@ impl Component for Nav {
 
     fn view(&self) -> Html {
         let toggle_menu_callback = self.link.callback(|_| Msg::ToggleMenu);
-        let home_class = if let AppRoute::Home = self.props.route {
+        let home_classes = if let AppRoute::Home = self.props.route {
             "nav-active"
         } else {
             "nav-inactive"
         }
         .to_owned()
             + " nav-default";
-        let about_class = if let AppRoute::About = self.props.route {
-            "nav-active"
-        } else {
-            "nav-inactive"
-        }
-        .to_owned()
-            + " nav-default";
-        let blog_class = if let AppRoute::Blog = self.props.route {
+        let about_classes = if let AppRoute::About = self.props.route {
             "nav-active"
         } else {
             "nav-inactive"
@@ -70,6 +68,13 @@ impl Component for Nav {
         .to_owned()
             + " nav-default";
 
+        let blog_classes = if let AppRoute::Blog = self.props.route {
+            "nav-active"
+        } else {
+            "nav-inactive"
+        }
+        .to_owned()
+            + " nav-default";
         html! {
         <nav class="nav">
         <div class="mx-auto px-2 sm:px-4 lg:px-8">
@@ -79,19 +84,19 @@ impl Component for Nav {
                 <div class="flex space-x-4">
                   <RouterAnchor<AppRoute>
                     route=AppRoute::Home
-                    classes=home_class
+                    classes=&home_classes
                   >
                     { "Home"}
                   </RouterAnchor<AppRoute>>
                   <RouterAnchor<AppRoute>
                     route=AppRoute::About
-                    classes=about_class
+                    classes=&about_classes
                   >
                     { "About" }
                   </RouterAnchor<AppRoute>>
                   <RouterAnchor<AppRoute>
                     route=AppRoute::Blog
-                    classes=blog_class
+                    classes=&blog_classes
                   >
                     { "Blog" }
                   </RouterAnchor<AppRoute>>
@@ -132,14 +137,14 @@ impl Component for Nav {
               >
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path
-                    class="{open ? 'hidden' : 'inline-flex' }"
+                    class=if self.menu_open { "hidden" } else { "inline-flex" }
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                   <path
-                    class="{open ? 'inline-flex' : 'hidden' }"
+                    class=if self.menu_open { "inline-flex" } else { "hidden" }
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="2"
@@ -150,23 +155,23 @@ impl Component for Nav {
             </div>
           </div>
         </div>
-        <div class="{open ? 'block' : 'hidden'} lg:hidden">
+        <div class=if self.menu_open { "block" } else { "hidden" }.to_owned() + " lg:hidden">
           <div class="px-2 pt-2 pb-3 flex flex-col space-y-1">
             <RouterAnchor<AppRoute>
               route=AppRoute::Home
-              classes="{ segment === undefined ? 'nav-active' : 'nav-inactive' } nav-default"
+              classes=home_classes
             >
               { "Home"}
             </RouterAnchor<AppRoute>>
             <RouterAnchor<AppRoute>
               route=AppRoute::About
-              classes="{ segment === 'about' ? 'nav-active' : 'nav-inactive'} nav-default"
+              classes=about_classes
             >
               { "About" }
             </RouterAnchor<AppRoute>>
             <RouterAnchor<AppRoute>
               route=AppRoute::Blog
-              classes="{ segment === 'about' ? 'nav-active' : 'nav-inactive'} nav-default"
+              classes=blog_classes
             >
               { "Blog" }
             </RouterAnchor<AppRoute>>
