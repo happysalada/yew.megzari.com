@@ -1,15 +1,15 @@
 use crate::components::tag::Tag;
+use anyhow::{Error, *};
 use serde::{Deserialize, Serialize};
+use yew::format::{Json, Nothing};
 use yew::prelude::*;
-use yewtil::fetch::{Fetch, FetchAction, FetchRequest, FetchState, Json, MethodBody};
-use yewtil::future::LinkFuture;
+use yew::services::fetch::{FetchService, FetchTask, Request, Response};
 
 /// About page
 pub struct About {
-    projects: Fetch<Request, Vec<Project>>,
+    projects: Option<Vec<Project>>,
+    _fetch_task: FetchTask,
 }
-#[derive(Default, Debug, Clone)]
-pub struct Request;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub struct Client {
@@ -26,29 +26,8 @@ pub struct Project {
     tags: Vec<Tag>,
 }
 
-impl FetchRequest for Request {
-    type RequestBody = ();
-    type ResponseBody = Vec<Project>;
-    type Format = Json;
-
-    fn url(&self) -> String {
-        "/projects.json".to_string()
-    }
-
-    fn method(&self) -> MethodBody<Self::RequestBody> {
-        MethodBody::Get
-    }
-
-    fn headers(&self) -> Vec<(String, String)> {
-        vec![]
-    }
-
-    fn use_cors(&self) -> bool {
-        true
-    }
-}
 pub enum Msg {
-    SetProjectsFetchState(FetchAction<Vec<Project>>),
+    FetchReady(Result<Vec<Project>, Error>),
 }
 
 impl Component for About {
@@ -56,16 +35,31 @@ impl Component for About {
     type Properties = ();
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        let projects: Fetch<Request, Vec<Project>> = Default::default();
-        link.send_future(projects.fetch(Msg::SetProjectsFetchState));
-        About { projects }
+        let callback = link.callback(
+            move |response: Response<Json<Result<Vec<Project>, Error>>>| {
+                let (meta, Json(data)) = response.into_parts();
+                if meta.status.is_success() {
+                    Msg::FetchReady(data)
+                } else {
+                    Msg::FetchReady(Err(anyhow!("Fetch failed META {:?}, {:?}", meta, data)))
+                    // FIXME: Handle this error accordingly.
+                }
+            },
+        );
+        let request = Request::get("/projects.json").body(Nothing).unwrap();
+        let fetch_task = FetchService::fetch_binary(request, callback).unwrap();
+        About {
+            projects: None,
+            _fetch_task: fetch_task,
+        }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::SetProjectsFetchState(fetch_state) => {
-                self.projects.apply(fetch_state);
-            }
+            Msg::FetchReady(fectched_data) => fectched_data.map_or_else(
+                |err| log::error!("{}", err),
+                |projects| self.projects = Some(projects),
+            ),
         }
         true
     }
@@ -104,20 +98,19 @@ impl Component for About {
                 { "Here is my portfolio" }
               </p>
             </div>
-            {
-              match self.projects.as_ref().state() {
-                  FetchState::Fetching(_) => html! {"Fetching"},
-                  FetchState::Fetched(data) => data.iter().map(render_project).collect(),
-                  FetchState::Failed(_, err) => html! {&err},
-                  FetchState::NotFetching(_) => html! {"Not Fetching"}
-              }
-            }
-            // {#each projects as project}
-            //   <Project {project} />
-            // {/each}
+            { self.render_projects() }
           </div>
         </div>
                 }
+    }
+}
+
+impl About {
+    fn render_projects(&self) -> Html {
+        self.projects.as_ref().map_or_else(
+            || html! { "No projects"},
+            |projects| projects.iter().map(render_project).collect(),
+        )
     }
 }
 
