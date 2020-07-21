@@ -1,7 +1,7 @@
 use crate::components::tag::Tag;
 use anyhow::{anyhow, Error};
 use serde::{Deserialize, Serialize};
-use yew::format::{Json, Nothing};
+use yew::format::{Nothing, Yaml};
 use yew::prelude::*;
 use yew::services::fetch::{FetchService, FetchTask, Request, Response};
 
@@ -36,8 +36,8 @@ impl Component for About {
 
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         let callback = link.callback(
-            move |response: Response<Json<Result<Vec<Project>, Error>>>| {
-                let (meta, Json(data)) = response.into_parts();
+            move |response: Response<Yaml<Result<Vec<Project>, Error>>>| {
+                let (meta, Yaml(data)) = response.into_parts();
                 if meta.status.is_success() {
                     Msg::FetchReady(data)
                 } else {
@@ -45,7 +45,7 @@ impl Component for About {
                 }
             },
         );
-        let request = Request::get("/projects.json").body(Nothing).unwrap();
+        let request = Request::get("/projects.yaml").body(Nothing).unwrap();
         let fetch_task = FetchService::fetch_binary(request, callback).unwrap();
         About {
             projects: None,
