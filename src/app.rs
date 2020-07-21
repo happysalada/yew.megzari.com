@@ -4,7 +4,7 @@ use yew_router::{prelude::*, route::Route};
 
 use crate::components::footer::Footer;
 use crate::components::nav::Nav;
-use crate::routes::{about::About, blog::Blog, home::Home, AppRoute};
+use crate::routes::{about::About, blog::Blog, home::Home, post::PostPage, AppRoute};
 
 /// Root component
 pub struct App;
@@ -37,6 +37,7 @@ impl Component for App {
                       AppRoute::Home => html!{ <Home /> },
                       AppRoute::About => html!{ <About /> },
                       AppRoute::Blog => html!{ <Blog /> },
+                      AppRoute::Post(slug) => html!{ <PostPage slug=slug /> },
                       AppRoute::PageNotFound(Permissive(None)) => html!{"Page not found"},
                       AppRoute::PageNotFound(Permissive(Some(missed_route))) => html!{format!("Page '{}' not found", missed_route)}
                     }
