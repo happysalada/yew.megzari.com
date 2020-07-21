@@ -1,0 +1,10 @@
+name = "worker_name"
+type = "webpack"
+account_id = "cloudflare_account_id"
+workers_dev = false
+zone_id = "cloudflare_zone_id"
+routes = ["www.your_blog.com/*", "your_blog.com/*"]
+
+[site]
+bucket = "./dist"
+entry-point = "workers-site"
