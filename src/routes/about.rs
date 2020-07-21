@@ -1,5 +1,5 @@
 use crate::components::tag::Tag;
-use anyhow::{Error, *};
+use anyhow::{anyhow, Error};
 use serde::{Deserialize, Serialize};
 use yew::format::{Json, Nothing};
 use yew::prelude::*;
@@ -42,7 +42,6 @@ impl Component for About {
                     Msg::FetchReady(data)
                 } else {
                     Msg::FetchReady(Err(anyhow!("Fetch failed META {:?}, {:?}", meta, data)))
-                    // FIXME: Handle this error accordingly.
                 }
             },
         );

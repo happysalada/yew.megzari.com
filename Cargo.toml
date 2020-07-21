@@ -3,6 +3,9 @@ name = "megzari"
 version = "0.1.0"
 authors = ["Raphael megzari raphael@megzari.com"]
 edition = "2018"
+description = "personal website"
+repository = "https://github.com/happysalada/yew.megzari.com"
+license = "MIT"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -13,7 +16,7 @@ serde = "1.0.114"
 serde_derive = "1"
 wasm-bindgen = "0.2.65"
 web_logger = "0.2"
-yew = { version = "0.17.2", features = ["web_sys"] }
+yew = { version = "0.17.2", features = ["web_sys", "yaml"] }
 yew-router = { version="0.14.0", features = ["web_sys"] }
 
 # `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
