@@ -1,9 +1,11 @@
 use crate::components::tag::Tag;
+use crate::routes::AppRoute;
 use anyhow::{anyhow, Error};
 use serde::{Deserialize, Serialize};
 use yew::format::{Nothing, Yaml};
 use yew::prelude::*;
 use yew::services::fetch::{FetchService, FetchTask, Request, Response};
+use yew_router::prelude::*;
 
 /// Blog page
 pub struct Blog {
@@ -99,22 +101,25 @@ fn render_post(post: &Post) -> Html {
 
     html! {
         <li>
-            <a class="text-blue-500 space-y-3" rel="prefetch" href=format!("blog/{}", slug).as_str()>
-            <h2>
-                {title}
-            </h2>
+            <RouterAnchor<AppRoute>
+                route=AppRoute::Post(slug.into())
+                classes="text-blue-500 space-y-3"
+                >
+                <h2>
+                    {title}
+                </h2>
 
-            <p class="text-white text-base">
-                {outline}
-            </p>
+                <p class="text-white text-base">
+                    {outline}
+                </p>
 
-            <p class="text-sm font-normal text-gray-500">
-                { "Tags: " }
-                { for tags.iter().map(|tag| {
-                html!{  <Tag tag=tag /> }
-                } )}
-            </p>
-            </a>
+                <p class="text-sm font-normal text-gray-500">
+                    { "Tags: " }
+                    { for tags.iter().map(|tag| {
+                    html!{  <Tag tag=tag /> }
+                    } )}
+                </p>
+            </RouterAnchor<AppRoute>>
         </li>
     }
 }
