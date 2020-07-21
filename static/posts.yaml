@@ -4,11 +4,12 @@
   slug: about_this_site
   outline: A brief reference to the technologies used to create this website
   tags:
-    [
-      { name: Rust, link: "https://www.rust-lang.org" },
-      { name: Yew, link: "https://yew.rs/docs" },
-      { name: Tailwind, link: "https://www.tailwindcss.com" },
-    ]
+    - name: Rust
+      link: "https://www.rust-lang.org"
+    - name: Yew
+      link: "https://yew.rs/docs"
+    - name: Tailwind
+      link: "https://www.tailwindcss.com"
   published_at: 19 April 2020
   html: |
     <p class="py-6">
