@@ -1,5 +1,154 @@
 # use YAML instead of json to embed html and to be able to justify my
 # choice with a comment
+- title: Using Nix on MacOS
+  slug: nix_on_macos
+  outline: A guide on installing and using Nix on MacOS
+  tags:
+    - name: Nix
+      link: "https://github.com/NixOS/nix"
+  published_at: 4 October 2020
+  html: |
+    <h2 class="py-4 text-2xl">Why</h2>
+    <p class="py-2">
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://github.com/NixOS/nix"
+      >
+        Nix
+      </a> is a purely functional package manager, an alternative to HomeBrew.
+      Pros:
+    </p>
+    <ul>
+      <li>Possibility to create isolated development environments. (no need for docker for development anymore)</li>
+      <li>Space efficient! Each installation keeps a dependency tree and when a dependency is no longer needed it is removed.
+         I'm sure it's what homebrew was supposed to do, but after 5 years there were so many packages I had no idea where they come from on my system.
+         </li>
+      <li>Fast! No benchmark on this, I'll let you try for yourself!</li>
+    </ul>
+    <p class="py-2">
+      Cons:
+    </p>
+    <ul>
+      <li>Learning curve is a little steep. Nix uses it's own language to define packages. There is also a whole eco-system around Nix (feels a little bit like drinking from the hose at first)</li>
+      <li>Documentation and examples are not so easy to find</li>
+      <li>Update for a new version of package might take a little longer than other package managers to be available</li>
+    </ul>
+
+    <p class="py-2">
+      The Nix package manager by itself is not really interesting, it starts to make full sense combining it with
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://github.com/LnL7/nix-darwin"
+      >
+        nix-darwin
+      </a>
+       or
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://github.com/nix-community/home-manager"
+      >
+        home-manager
+      </a>
+        or both!
+      Those projects enable you to build your system from a configuration file.
+      Nix-darwin aims at configuring your MacOS (auto-hide the dock, enable 3 finger drag for trackpad...) and define some programs that should available for every users.
+      Home manager goes one step further and enables you to define the configurations for those programs you install (no more messing with dotfiles and symlinks).
+    </p>
+
+    <p class="py-2">
+      Should you do it?
+      I would say you should be ready to invest a good weekend.
+      Removing HomeBrew and switching completely to Nix freed 40 Gb of space for me.
+      For development, not having to mess again with docker was a huge advantage too.
+      If you don't want to use Nix for everything, you can still install binaries the old way.
+      I still haven't switched my firefox and vscode installation (those are still the old binaries downloaded from the internet).
+    </p>
+
+    <h2 class="py-4 text-2xl">How</h2>
+    <h3 class="py-2 text-xl">Nix</h3>
+    <p class="py-6">
+      Instruction for installation can be found
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://nixos.org/manual/nix/stable/#sect-macos-installation"
+      >
+        here
+      </a>. The installation can be multi user or single user.
+      TLDR: only use single user when you are a nix expert.
+      First pitfall! The default command for macos is for a single user install.
+      You have to add --daemon at the end of it.
+    </p>
+
+    <h3>Nix-darwin</h3>
+    <p class="py-6">
+      This step is not mandatory
+    </p>
+    <h3>Home-manager</h3>
+    <p class="py-6">
+      This site was created using
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://www.tailwindcss.com"
+      >
+        Tailwind CSS
+      </a>,
+
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://www.rust-lang.org/"
+      >
+        Rust
+      </a>,
+
+      and
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://yew.rs/docs/"
+      >
+        Yew
+      </a>.
+      If you're interested, you can check
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://github.com/happysalada/yew.megzari.com"
+      >
+        the source code
+      </a>.
+    </p>
+    <h3>Nix-shell</h3>
+    <p class="py-6">
+      This site was created using
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://www.tailwindcss.com"
+      >
+        Tailwind CSS
+      </a>,
+
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://www.rust-lang.org/"
+      >
+        Rust
+      </a>,
+
+      and
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://yew.rs/docs/"
+      >
+        Yew
+      </a>.
+      If you're interested, you can check
+      <a
+        class="text-blue-500 no-underline hover:underline"
+        href="https://github.com/happysalada/yew.megzari.com"
+      >
+        the source code
+      </a>.
+    </p>
+
+
 - title: About this site
   slug: about_this_site
   outline: A brief reference to the technologies used to create this website

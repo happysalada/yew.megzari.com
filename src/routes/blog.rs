@@ -68,7 +68,7 @@ impl Component for Blog {
             style="font-family: Georgia, serif;"
           >
                 <div class="font-sans">
-                  <h1 class="font-sans break-normal text-white pt-6 pb-2 text-3xl md:text-4xl">
+                  <h1 class="font-sans break-normal text-white py-6 text-3xl md:text-4xl">
                     { "Recent posts" }
                   </h1>
 
