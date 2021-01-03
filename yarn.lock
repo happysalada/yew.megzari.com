@@ -4041,12 +4041,12 @@ no-case@^3.0.3:
     lower-case "^2.0.1"
     tslib "^1.10.0"
 
-no-emit-webpack-plugin@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/no-emit-webpack-plugin/-/no-emit-webpack-plugin-2.0.1.tgz#ee2a0ab7b542aaf6b648c0527064c00f12d09d8a"
-  integrity sha512-wSu18FOMDyRChcYSbAE2YuXrOZnOYrtb/YcEJKWQnSehZ2bUdGltTRVfDlqLOvEj6dACGg3oPzRmCpMGWp91Rg==
+no-emit-webpack-plugin@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/no-emit-webpack-plugin/-/no-emit-webpack-plugin-3.0.0.tgz#a3da4795f57acef1475ea3f084b361dbcc6ed1c8"
+  integrity sha512-Hd9Bj7B6mm1dkUROLbfd6Ur/6wacX1J6nzdi19c/ShQV3mjGXVjaCFEOKHBfOw+YQlXVZKhKcoom7/vY4vKUWQ==
   dependencies:
-    schema-utils "^0.4.3"
+    schema-utils "^3.0.0"
 
 node-emoji@^1.8.1:
   version "1.10.0"
@@ -5492,14 +5492,6 @@ sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
-
-schema-utils@^0.4.3:
-  version "0.4.7"
-  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.4.7.tgz#ba74f597d2be2ea880131746ee17d0a093c68187"
-  integrity sha512-v/iwU6wvwGK8HbU9yi3/nhGzP0yGSuhQMzL6ySiec1FSrZZDkhm4noOSWzrNFo/jEc+SJY6jRTwuwbSXJPDUnQ==
-  dependencies:
-    ajv "^6.1.0"
-    ajv-keywords "^3.1.0"
 
 schema-utils@^1.0.0:
   version "1.0.0"
