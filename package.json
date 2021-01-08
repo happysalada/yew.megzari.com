@@ -29,7 +29,7 @@
     "tailwindcss": "^1.9.6",
     "text-encoding": "^0.7.0",
     "wait-on": "^5.2.1",
-    "webpack": "^5.11.1",
+    "webpack": "^5.12.1",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.1"
   }
