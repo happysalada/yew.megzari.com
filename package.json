@@ -28,7 +28,7 @@
     "style-loader": "^2.0.0",
     "tailwindcss": "^1.9.6",
     "text-encoding": "^0.7.0",
-    "wait-on": "^5.2.1",
+    "wait-on": "^5.2.2",
     "webpack": "^5.26.2",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
