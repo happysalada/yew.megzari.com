@@ -4373,10 +4373,10 @@ postcss-svgo@^4.0.2:
     postcss-value-parser "^3.0.0"
     svgo "^1.0.0"
 
-postcss-typed-css-classes@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/postcss-typed-css-classes/-/postcss-typed-css-classes-0.2.2.tgz#6b14e22c42980582b0013589837eb3f41c08a9eb"
-  integrity sha512-qEmvwbftaF8JDM2eLIH1+VQJuW2IugYlTMHSi6ZqhfTpYffGtF4EE8abC6JAlYqDDUOS3ES1TXlD5ZN3PS9dhg==
+postcss-typed-css-classes@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/postcss-typed-css-classes/-/postcss-typed-css-classes-0.2.3.tgz#0f66780b4ebdb4704b86a674207c758eaced935d"
+  integrity sha512-5fad0xiCnvKjA0WAkHFISPs+NPNKUh75A0g0pUbFxr/cQrg0xIZ03eUhRc9Biqt0rVJMVbkhIB0g1TtX2cxLEw==
   dependencies:
     fast-glob "^3.2.4"
     postcss "7.0.29"
